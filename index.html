@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balloon Defense</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #1a1a1a;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        #gameContainer {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        canvas {
+            border: 2px solid #333;
+            background-color: white;
+        }
+
+        #countdown {
+            position: absolute;
+            top: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        #themeSelector {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        #leaderboard {
+            position: absolute;
+            top: 150px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 10px;
+            min-width: 200px;
+        }
+
+        #leaderboard h3 {
+            margin-top: 0;
+            text-align: center;
+        }
+
+        #leaderboardList {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #leaderboardList li {
+            margin: 5px 0;
+            padding: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+        }
+
+        #gameOver {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+        }
+
+        #gameOver button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background: #4CAF50;
+            border: none;
+            color: white;
+            border-radius: 5px;
+        }
+
+        #gameOver button:hover {
+            background: #45a049;
+        }
+
+        #playerName {
+            margin: 10px 0;
+            padding: 5px;
+            font-size: 16px;
+            width: 200px;
+            text-align: center;
+        }
+
+        select {
+            padding: 5px;
+            font-size: 14px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="gameContainer">
+        <canvas id="gameCanvas" width="1500" height="1000"></canvas>
+        <div id="countdown">Round <span id="countdownValue">1</span></div>
+        <select id="theme">
+            <option value="classic">Classic White</option>
+            <option value="night">Night Sky</option>
+            <option value="sunset">Sunset</option>
+            <option value="grid">Grid</option>
+            <option value="polkadots">Polka Dots</option>
+            <option value="space">Space</option>
+        </select>
+        <div id="leaderboard">
+            <h3>Top Scores</h3>
+            <ul id="leaderboardList"></ul>
+        </div>
+        <div id="gameOver">
+            <h2>Game Over!</h2>
+            <p>Final Score: <span id="finalScore">0</span></p>
+            <p>Rounds Completed: <span id="finalRound">0</span></p>
+            <label for="playerName">Enter your name:</label>
+            <input type="text" id="playerName" placeholder="Your Name" maxlength="10">
+            <button onclick="saveScore()">Submit Score</button>
+            <button onclick="location.reload()">Play Again</button>
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>
